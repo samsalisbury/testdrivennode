@@ -22,7 +22,7 @@ describe "Board", ->
   describe "#placeShipOffBoard", ->
     Given -> [@x, @y] = [-1, 0]
     Given -> @orientation = "horizontal"
-    
-    When -> expect(-> subject.place3SpotShip(@x, @y, @orientation)).toThrow("Error: You cannot put a ship at -1, 0; that's out of bounds!");
+
+    When -> expect(-> subject.place3SpotShip(@x, @y, @orientation)).toThrow("You cannot put a ship at -1, 0; that's out of bounds!");
     And -> @subject.grid[0][0].state == "none"
     And -> @subject.grid[0][1].state == "none"
