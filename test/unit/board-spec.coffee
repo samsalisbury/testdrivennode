@@ -1,4 +1,5 @@
 Board = require("../../lib/board")
+captureException = require("./helpers/exceptions").captureException
 
 describe "Board", ->
   Given -> @subject = new Board()
@@ -23,6 +24,7 @@ describe "Board", ->
     Given -> [@x, @y] = [-1, 0]
     Given -> @orientation = "horizontal"
 
-    When -> expect(-> subject.place3SpotShip(@x, @y, @orientation)).toThrow("You cannot put a ship at -1, 0; that's out of bounds!");
+    When -> @f = => @subject.place3SpotShip(@x, @y, @orientation)
+    Then -> expect(@f).toThrow
     And -> @subject.grid[0][0].state == "none"
     And -> @subject.grid[0][1].state == "none"
